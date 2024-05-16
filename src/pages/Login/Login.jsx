@@ -1,0 +1,76 @@
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
+import togglePassword from "../../services/togglePassword";
+import { fetchUser, loginThunk } from "../../redux/auth/operations";
+
+const Login = () => {
+  const [toggleInput, setToggleInput] = useState("password");
+  const [toggleIcon, setToggleIcon] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    reset,
+  } = useForm();
+
+  const logIn = async (data) => {
+    try {
+      dispatch(loginThunk(data)).then((info) => {
+        dispatch(fetchUser(info.payload.uid));
+      });
+      reset();
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit(logIn)}>
+        <label>
+          <input
+            type="email"
+            {...register("email", { required: true })}
+            placeholder="email@gmail.com"
+          />
+          {errors.email && <span> {errors.email.message}</span>}
+        </label>
+        <label>
+          <input
+            type={toggleInput}
+            {...register("password", { required: true })}
+            placeholder="Password"
+            className="form-control"
+          />
+          <svg
+            onClick={() =>
+              togglePassword(toggleInput, setToggleInput, setToggleIcon)
+            }
+          >
+            {toggleIcon ? <RiEyeOffLine /> : <RiEyeLine />}
+          </svg>
+          {errors.password && <span>{errors.password.message}</span>}
+        </label>
+        <button
+          type="submit"
+          disabled={!isValid}
+          style={{
+            backgroundColor: isValid ? "rgb(144, 64, 246)" : "#CFC5DC",
+          }}
+        >
+          login
+        </button>
+      </form>
+      <Link to="/register">Register</Link>
+    </>
+  );
+};
+
+export default Login;
