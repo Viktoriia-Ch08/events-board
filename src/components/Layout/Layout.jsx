@@ -1,21 +1,23 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { selectIsAuth } from "../../redux/auth/selectors";
-import { logOut } from "../../redux/auth/authSlice";
-import { Suspense } from "react";
+// import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+// import { selectIsAuth } from '../../redux/auth/selectors';
+// import { logOut } from "../../redux/auth/authSlice";
+import { Suspense } from 'react';
+import { Header, Link, Nav } from './Layout.styled';
 
 const Layout = () => {
-  const dispatch = useDispatch();
-  const isAuth = useSelector(selectIsAuth);
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const isAuth = useSelector(selectIsAuth);
+  // const navigate = useNavigate();
 
   return (
-    <header>
-      <nav>
-        <Link to="/">Home</Link>
-        {!isAuth && <Link to="/login">Login</Link>}
-      </nav>
-      {isAuth && (
+    <>
+      <Header>
+        <Nav className="main-container">
+          <Link to="/">Events</Link>
+          {/* {!isAuth && <Link to="/login">Login</Link>} */}
+        </Nav>
+        {/* {isAuth && (
         <button
           type="button"
           onClick={() => {
@@ -25,11 +27,16 @@ const Layout = () => {
         >
           LogOut
         </button>
-      )}
-      <Suspense>
-        <Outlet />
-      </Suspense>
-    </header>
+      )} */}
+      </Header>
+      <main className="main-container">
+        <section className="section">
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </section>
+      </main>
+    </>
   );
 };
 

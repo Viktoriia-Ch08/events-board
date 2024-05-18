@@ -1,40 +1,27 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  fetchEventsData,
-  fetchLimitedEventsData,
-  fetchNextEventsCards,
-} from "../../services/eventsServices";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { LIMIT_NUMBER } from '../../services/config';
 
 export const fetchEvents = createAsyncThunk(
-  "events/fetchEvents",
-  async (_, thunkAPI) => {
+  'events/fetchEvents',
+  async (page, thunkAPI) => {
     try {
-      const response = await fetchEventsData();
-      return response;
+      const response = await axios.get(
+        `/events?page=${page}&limit=${LIMIT_NUMBER}`
+      );
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
 
-export const fetchLimitedEvents = createAsyncThunk(
-  "events/fetchLimitedEvents",
-  async (_, thunkAPI) => {
+export const fetchEventById = createAsyncThunk(
+  'event/fetchEventById',
+  async (id, thunkAPI) => {
     try {
-      const response = await fetchLimitedEventsData();
-      return response;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
-
-export const fetchNextEvents = createAsyncThunk(
-  "events/fetchNextEvents",
-  async (_, thunkAPI) => {
-    try {
-      const response = await fetchNextEventsCards();
-      return response;
+      const response = await axios.get(`/events/${id}`);
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

@@ -1,48 +1,42 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchEvents, fetchLimitedEvents, fetchNextEvents } from "./operations";
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { fetchEventById, fetchEvents } from './operations';
 
 const eventsSlice = createSlice({
-  name: "events",
+  name: 'events',
   initialState: {
     events: [],
-    limitedEvents: [],
-    registeredUsers: [],
+    eventDetails: {},
+    page: 1,
+    totalEvents: 0,
     isLoading: false,
     error: null,
   },
-  reducers: {},
-  extraReducers: (builder) => {
+  reducers: {
+    setPage: (state, action) => {
+      state.page = action.payload;
+    },
+  },
+  extraReducers: builder => {
     builder
       .addCase(fetchEvents.fulfilled, (state, action) => {
         state.isLoading = false;
         state.events = [...action.payload.events];
+        state.totalEvents = action.payload.totalRecords;
       })
-      .addCase(fetchLimitedEvents.fulfilled, (state, action) => {
+      .addCase(fetchEventById.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.limitedEvents = [...action.payload];
-      })
-      .addCase(fetchNextEvents.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.limitedEvents = [...action.payload];
+        state.eventDetails = action.payload;
       })
       .addMatcher(
-        isAnyOf(
-          fetchEvents.pending,
-          fetchLimitedEvents.pending,
-          fetchNextEvents.pending
-        ),
-        (state) => {
+        isAnyOf(fetchEvents.pending, fetchEventById.pending),
+        state => {
           state.isLoading = true;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(
-          fetchEvents.rejected,
-          fetchLimitedEvents.rejected,
-          fetchNextEvents.rejected
-        ),
-        (state) => {
+        isAnyOf(fetchEvents.rejected, fetchEventById.rejected),
+        (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         }
@@ -51,4 +45,4 @@ const eventsSlice = createSlice({
 });
 
 export const eventsReducer = eventsSlice.reducer;
-export const { filterEvents } = eventsSlice.actions;
+export const { setPage } = eventsSlice.actions;
