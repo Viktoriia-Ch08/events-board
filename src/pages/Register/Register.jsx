@@ -7,6 +7,7 @@ import {
   Input,
   InputWrap,
   RadioBtnLabel,
+  RegisterQuestion,
   RegisterWrap,
   ReturnBackBtn,
   SubmitBtn,
@@ -76,6 +77,7 @@ const Register = () => {
               />
             </label>
           </InputWrap>
+          <RegisterQuestion>How did you know about us?</RegisterQuestion>
           <RadioBtnLabel>
             <input
               type="radio"

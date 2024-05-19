@@ -1,13 +1,13 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "firebase/auth";
-import { fetchUserData } from "../../services/authServices";
-import { auth } from "../../../firebase.config";
+} from 'firebase/auth';
+import { fetchUserData } from '../../services/authServices';
+import { auth } from '../../../firebase.config';
 
 export const fetchUser = createAsyncThunk(
-  "auth/fetchUser",
+  'auth/fetchUser',
   async (uid, thunkAPI) => {
     try {
       const response = await fetchUserData(uid);
@@ -19,7 +19,7 @@ export const fetchUser = createAsyncThunk(
 );
 
 export const registerThunk = createAsyncThunk(
-  "auth/register",
+  'auth/register',
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await createUserWithEmailAndPassword(
@@ -35,7 +35,7 @@ export const registerThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);

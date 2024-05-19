@@ -14,7 +14,7 @@ const eventsPersistConfig = {
 const userPersistConfig = {
   key: 'user',
   storage,
-  whitelist: ['user', 'token'],
+  whitelist: ['user', 'token', 'isAuth'],
 };
 
 const participantsPersistConfig = {

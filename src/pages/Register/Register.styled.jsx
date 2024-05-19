@@ -16,15 +16,15 @@ export const Input = styled.input`
   height: 40px;
   border-radius: 12px;
   cursor: 'pointer';
+  padding: 0 15px;
 `;
 
 export const RadioBtnLabel = styled.label`
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 7px;
 
-  margin-bottom: 7px;
-  margin-top: 7px;
+  margin-bottom: 10px;
 `;
 
 export const SubmitBtn = styled.button`
@@ -89,4 +89,10 @@ export const RegisterWrap = styled.div`
 
   @media ${device.tablet} {
   }
+`;
+
+export const RegisterQuestion = styled.p`
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
 `;

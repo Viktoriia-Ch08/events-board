@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { RiEyeLine, RiEyeOffLine } from "react-icons/ri";
-import togglePassword from "../../services/togglePassword";
-import { fetchUser, loginThunk } from "../../redux/auth/operations";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri';
+import togglePassword from '../../services/togglePassword';
+import { fetchUser, loginThunk } from '../../redux/auth/operations';
+import { Input, SubmitBtn } from '../Register/Register.styled';
+import {
+  AuthLink,
+  AuthText,
+  AuthWrap,
+  SvgEye,
+  SvgSpan,
+  SvgWrap,
+} from './Login.styled';
+import { failedNotification } from '../../services/notifications.js';
 
 const Login = () => {
-  const [toggleInput, setToggleInput] = useState("password");
+  const [toggleInput, setToggleInput] = useState('password');
   const [toggleIcon, setToggleIcon] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,57 +29,61 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const logIn = async (data) => {
+  const logIn = async data => {
     try {
-      dispatch(loginThunk(data)).then((info) => {
-        dispatch(fetchUser(info.payload.uid));
-      });
-      reset();
-      navigate("/");
+      dispatch(loginThunk(data))
+        .unwrap()
+        .then(info => {
+          dispatch(fetchUser(info.uid));
+          reset();
+          navigate('/');
+        })
+        .catch(() => {
+          failedNotification('Sorry, write your login or password correctly');
+        });
     } catch (error) {
       console.log(error.message);
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(logIn)}>
+    <AuthWrap>
+      <form onSubmit={handleSubmit(logIn)} className="auth-form">
         <label>
-          <input
+          <Input
             type="email"
-            {...register("email", { required: true })}
+            {...register('email', { required: true })}
             placeholder="email@gmail.com"
           />
           {errors.email && <span> {errors.email.message}</span>}
         </label>
         <label>
-          <input
+          <Input
             type={toggleInput}
-            {...register("password", { required: true })}
+            {...register('password', { required: true })}
             placeholder="Password"
             className="form-control"
           />
-          <svg
-            onClick={() =>
-              togglePassword(toggleInput, setToggleInput, setToggleIcon)
-            }
-          >
-            {toggleIcon ? <RiEyeOffLine /> : <RiEyeLine />}
-          </svg>
+          <SvgWrap>
+            <SvgSpan>
+              <SvgEye
+                onClick={() =>
+                  togglePassword(toggleInput, setToggleInput, setToggleIcon)
+                }
+              >
+                {toggleIcon ? <RiEyeOffLine /> : <RiEyeLine />}
+              </SvgEye>
+            </SvgSpan>
+          </SvgWrap>
           {errors.password && <span>{errors.password.message}</span>}
         </label>
-        <button
-          type="submit"
-          disabled={!isValid}
-          style={{
-            backgroundColor: isValid ? "rgb(144, 64, 246)" : "#CFC5DC",
-          }}
-        >
-          login
-        </button>
+        <SubmitBtn type="submit" disabled={!isValid}>
+          Login
+        </SubmitBtn>
       </form>
-      <Link to="/register">Register</Link>
-    </>
+      <AuthText>Haven&apos;t signed up yet? </AuthText>
+      <AuthLink to="/signup">Sign up</AuthLink>
+    </AuthWrap>
   );
 };
 

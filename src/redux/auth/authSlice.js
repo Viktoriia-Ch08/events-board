@@ -1,24 +1,24 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchUser, loginThunk, registerThunk } from "./operations";
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { fetchUser, loginThunk, registerThunk } from './operations';
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
     user: {
-      uid: "",
-      name: "",
-      email: "",
-      birthDate: "",
+      uid: '',
+      name: '',
+      email: '',
+      birthDate: '',
       events: [],
     },
-    token: "",
+    token: '',
     isLoading: false,
     error: null,
   },
   reducers: {
-    logOut(state, _) {
+    logOut(state) {
       state.user = {};
-      state.token = "";
+      state.token = '';
       state.isAuth = false;
     },
     updateUser(state, action) {
@@ -31,11 +31,9 @@ const authSlice = createSlice({
         : (state.user.events = [...action.payload.events]);
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, (state, action) => {
-        console.log(action);
-        debugger;
         const { email, accessToken, uid } = action.payload;
         state.user = { email, uid };
         state.token = accessToken;
@@ -61,7 +59,7 @@ const authSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(registerThunk.pending, loginThunk.pending, fetchUser.pending),
-        (state) => {
+        state => {
           state.isLoading = true;
           state.error = null;
         }
@@ -72,7 +70,7 @@ const authSlice = createSlice({
           loginThunk.rejected,
           fetchUser.rejected
         ),
-        (state) => {
+        (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         }
