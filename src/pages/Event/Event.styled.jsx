@@ -28,9 +28,6 @@ export const ImageWrap = styled.div`
   @media ${device.tablet} {
     min-width: 350px;
   }
-  @media ${device.desktop} {
-    /* min-width: 500px; */
-  }
 `;
 
 export const EventImg = styled.img`
@@ -78,9 +75,13 @@ export const EventThumb = styled.div`
 
 export const EventLinkWrap = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
 
   margin-bottom: 20px;
+  @media ${device.tablet} {
+    justify-content: space-between;
+  }
+
   @media ${device.desktop} {
     justify-content: flex-start;
     gap: 20px;
@@ -100,5 +101,3 @@ export const EventLink = styled(NavLink)`
   color: var(--text-special-clr);
   background-color: var(--text-clr-black);
 `;
-
-export const EventInfoThumb = styled.div``;

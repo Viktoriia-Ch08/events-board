@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 // import { selectIsAuth } from '../../redux/auth/selectors';
 // import { logOut } from "../../redux/auth/authSlice";
 import { Suspense } from 'react';
-import { Header, Link, Nav } from './Layout.styled';
+import { HeaderWrap, Link, Nav } from './Layout.styled';
 
 const Layout = () => {
   // const dispatch = useDispatch();
@@ -11,8 +11,8 @@ const Layout = () => {
   // const navigate = useNavigate();
 
   return (
-    <>
-      <Header>
+    <header>
+      <HeaderWrap>
         <Nav className="main-container">
           <Link to="/">Events</Link>
           {/* {!isAuth && <Link to="/login">Login</Link>} */}
@@ -28,7 +28,7 @@ const Layout = () => {
           LogOut
         </button>
       )} */}
-      </Header>
+      </HeaderWrap>
       <main className="main-container">
         <section className="section">
           <Suspense>
@@ -36,7 +36,7 @@ const Layout = () => {
           </Suspense>
         </section>
       </main>
-    </>
+    </header>
   );
 };
 

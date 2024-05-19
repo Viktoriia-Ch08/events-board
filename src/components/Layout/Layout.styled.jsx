@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../css/deviceSizes';
 import { NavLink } from 'react-router-dom';
 
-export const Header = styled.header`
+export const HeaderWrap = styled.div`
   position: fixed;
   top: 0;
 

@@ -9,7 +9,6 @@ export const Cards = styled.ul`
   align-items: center;
   justify-content: center;
   margin-bottom: 30px;
-  padding: 15px;
 
   @media ${device.tablet} {
     width: 100%;
@@ -29,12 +28,7 @@ export const Card = styled.li`
   @media ${device.tablet} {
     min-width: 0;
     width: calc((100% - 40px) / 3);
-    height: 325px;
-  }
-
-  @media ${device.desktop} {
-    width: calc((100% - 60px) / 4);
-    min-height: 325px;
+    height: 400px;
   }
 `;
 
@@ -59,15 +53,18 @@ export const Title = styled.h2`
 `;
 
 export const InfoCardWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
   padding: 0 5px;
+  @media ${device.tablet} {
+    padding: 0 15px;
+  }
 `;
 
 export const InfoText = styled.p`
   font-size: 16px;
   color: var(--text-grey-clr);
-  @media ${device.tablet} {
-    min-height: 45px;
-  }
 `;
 
 export const DateInfo = styled.p`
@@ -76,7 +73,7 @@ export const DateInfo = styled.p`
   color: var(--text-special-clr);
 
   @media ${device.tablet} {
-    min-height: 45px;
+    font-size: 16px;
   }
 `;
 
@@ -112,4 +109,7 @@ export const LinkInfoWrap = styled.div`
   justify-content: center;
   gap: 20px;
   margin-bottom: 20px;
+  @media ${device.tablet} {
+    padding: 0 15px;
+  }
 `;

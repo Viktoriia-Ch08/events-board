@@ -49,8 +49,16 @@ const Home = () => {
                     <Image src={imageUrl} alt={title} />
                   </ImgThumb>
                   <InfoCardWrap>
-                    <Title>{title}</Title>
-                    <InfoText>{organizer}</InfoText>
+                    <Title>
+                      {title.length > 15
+                        ? `${title.substring(0, 15)}...`
+                        : title}
+                    </Title>
+                    <InfoText>
+                      {organizer.length > 18
+                        ? `${organizer.substring(0, 18)}...`
+                        : organizer}
+                    </InfoText>
                     <DateInfo>{eventDate}</DateInfo>
                   </InfoCardWrap>
                   <LinkInfoWrap>

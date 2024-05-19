@@ -14,7 +14,6 @@ export const InputWrap = styled.div`
 export const Input = styled.input`
   width: 320px;
   height: 40px;
-  padding: 0 15px;
   border-radius: 12px;
   cursor: 'pointer';
 `;
@@ -24,7 +23,6 @@ export const RadioBtnLabel = styled.label`
   align-items: center;
   gap: 15px;
 
-  padding-left: 15px;
   margin-bottom: 7px;
   margin-top: 7px;
 `;
@@ -67,8 +65,8 @@ export const ReturnBackBtn = styled.button`
   justify-content: center;
   width: 150px;
   height: 40px;
+  margin-bottom: 20px;
 
-  /* font-weight: var(--font-weight-bold); */
   font-size: 20px;
   text-shadow: 1px 1px 2px var(--text-clr-black);
   border-radius: 12px;
@@ -78,7 +76,7 @@ export const ReturnBackBtn = styled.button`
   border: 2px solid var(--text-clr-black);
 
   @media ${device.tablet} {
-    width: 100px;
+    width: 200px;
     font-size: 20px;
   }
 `;
@@ -86,7 +84,9 @@ export const ReturnBackBtn = styled.button`
 export const RegisterWrap = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   justify-content: center;
-  gap: 20px;
+
+  @media ${device.tablet} {
+  }
 `;

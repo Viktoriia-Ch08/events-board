@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { fetchEventById } from '../../redux/events/operations';
 import { selectEventDetails } from '../../redux/events/selectors';
 import {
   EventDate,
   EventHeader,
   EventImg,
-  EventInfoThumb,
   EventInfoWrap,
   EventLink,
   EventLinkWrap,
@@ -16,24 +15,27 @@ import {
   EventWrap,
   ImageWrap,
 } from './Event.styled';
+import { ReturnBackBtn } from '../Register/Register.styled';
 
 const Event = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const eventDetails = useSelector(selectEventDetails);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchEventById(id));
   }, [dispatch, id]);
 
   return (
-    <>
+    <div>
+      <ReturnBackBtn onClick={() => navigate(-1)}>Return back</ReturnBackBtn>
       {Object.keys(eventDetails).length > 0 && (
         <EventWrap>
           <ImageWrap>
             <EventImg src={eventDetails.imageUrl} alt={eventDetails.title} />
           </ImageWrap>
-          <EventInfoThumb>
+          <div>
             <EventInfoWrap>
               <EventHeader>{eventDetails.title}</EventHeader>
               <EventText>{eventDetails.organizer}</EventText>
@@ -45,10 +47,10 @@ const Event = () => {
             </EventLinkWrap>
             <EventTitle>Description</EventTitle>
             <EventText>{eventDetails.description}</EventText>
-          </EventInfoThumb>
+          </div>
         </EventWrap>
       )}
-    </>
+    </div>
   );
 };
 
