@@ -7,8 +7,15 @@
   align-items: center;
 }
 
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
 .section {
-  padding-top: 100px;
+  padding-top: 80px;
   padding-left: 20px;
   padding-right: 20px;
 }
@@ -19,6 +26,39 @@
   background-color: transparent;
   font-size: 24px;
   font-weight: 700;
+}
+
+.rc-pagination-item-active,
+.rc-pagination-item-active a,
+.rc-pagination-item-active:focus a,
+.rc-pagination-item-active:hover a,
+.rc-pagination-item-active:focus,
+.rc-pagination-item-active:hover,
+.rc-pagination-prev:focus .rc-pagination-item-link,
+.rc-pagination-next:focus .rc-pagination-item-link,
+.rc-pagination-prev:hover .rc-pagination-item-link,
+.rc-pagination-next:hover .rc-pagination-item-link {
+  border-color: yellow;
+  color: yellow;
+}
+
+.rc-pagination-prev .rc-pagination-item-link,
+.rc-pagination-next .rc-pagination-item-link {
+  font-size: 24px;
+}
+
+.rc-pagination-prev .rc-pagination-item-link,
+.rc-pagination-next .rc-pagination-item-link {
+  background-color: transparent;
+}
+
+.rc-pagination-prev,
+.rc-pagination-next,
+.rc-pagination-jump-prev,
+.rc-pagination-jump-next,
+.rc-pagination-item {
+  min-width: 40px;
+  height: 30px;
 }
 
 .rc-pagination {
