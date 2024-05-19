@@ -20,7 +20,7 @@ git clone https://github.com/Viktoriia-Ch08/events-board
 npm install
 ```
 
-4. Run the application
+3. Run the application
 
 ```bash
 npm run dev
