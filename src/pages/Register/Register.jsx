@@ -69,8 +69,10 @@ const Register = () => {
             <label>
               <Input
                 type="date"
-                {...register('birthDate', { required: true })}
                 placeholder="08.08.1988"
+                min="1920-01-01"
+                max="2018-12-31"
+                {...register('birthDate', { required: true })}
               />
             </label>
           </InputWrap>
