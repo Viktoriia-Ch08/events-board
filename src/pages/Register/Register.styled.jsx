@@ -96,3 +96,9 @@ export const RegisterQuestion = styled.p`
   font-size: 18px;
   font-weight: var(--font-weight-bold);
 `;
+
+export const RegisterText = styled.h2`
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+`;

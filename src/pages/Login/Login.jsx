@@ -7,6 +7,8 @@ import togglePassword from '../../services/togglePassword';
 import { fetchUser, loginThunk } from '../../redux/auth/operations';
 import { Input, SubmitBtn } from '../Register/Register.styled';
 import {
+  AuthHeader,
+  AuthLabel,
   AuthLink,
   AuthText,
   AuthWrap,
@@ -49,15 +51,18 @@ const Login = () => {
   return (
     <AuthWrap>
       <form onSubmit={handleSubmit(logIn)} className="auth-form">
-        <label>
+        <AuthHeader>Log In</AuthHeader>
+        <AuthLabel>
+          Enter your email
           <Input
             type="email"
             {...register('email', { required: true })}
             placeholder="email@gmail.com"
           />
           {errors.email && <span> {errors.email.message}</span>}
-        </label>
-        <label>
+        </AuthLabel>
+        <AuthLabel>
+          Enter your password
           <Input
             type={toggleInput}
             {...register('password', { required: true })}
@@ -76,7 +81,7 @@ const Login = () => {
             </SvgSpan>
           </SvgWrap>
           {errors.password && <span>{errors.password.message}</span>}
-        </label>
+        </AuthLabel>
         <SubmitBtn type="submit" disabled={!isValid}>
           Login
         </SubmitBtn>

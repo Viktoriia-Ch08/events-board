@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAllParticipants } from '../../redux/participants/selectors';
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
-import { fetchAllParticipants } from '../../redux/participants/operation';
+import { fetchAllParticipantsByEventId } from '../../redux/participants/operation';
 import { useNavigate, useParams } from 'react-router';
 import { selectEventTitle } from '../../redux/events/selectors';
 import {
+  NoParticText,
   ParticImg,
   ParticInfoWrap,
   ParticItem,
@@ -25,7 +26,7 @@ const Participants = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchAllParticipants(id));
+    dispatch(fetchAllParticipantsByEventId(id));
   }, [dispatch, id]);
 
   return (
@@ -49,7 +50,7 @@ const Participants = () => {
           </ParticList>
         </ParticWrap>
       ) : (
-        <p>No one register yet</p>
+        <NoParticText>No one register yet.</NoParticText>
       )}
     </>
   );

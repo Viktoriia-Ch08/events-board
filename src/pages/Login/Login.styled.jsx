@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const SvgSpan = styled.span`
   position: absolute;
-  top: 50px;
+  top: 40px;
   transform: translateY(-50%);
   right: 10px;
 `;
@@ -33,5 +33,19 @@ export const AuthWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+
+  margin-bottom: 50px;
+`;
+
+export const AuthHeader = styled.h2`
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+`;
+
+export const AuthLabel = styled.label`
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 `;

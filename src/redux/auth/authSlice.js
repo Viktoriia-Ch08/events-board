@@ -1,5 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { fetchUser, loginThunk, registerThunk } from './operations';
+import {
+  fetchUser,
+  fetchUserEventsByEmail,
+  loginThunk,
+  registerThunk,
+} from './operations';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -56,6 +61,10 @@ const authSlice = createSlice({
         state.preOrders = action.payload.preOrders;
         state.isLoading = false;
         state.isAuth = true;
+      })
+      .addCase(fetchUserEventsByEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user.events = [...action.payload];
       })
       .addMatcher(
         isAnyOf(registerThunk.pending, loginThunk.pending, fetchUser.pending),

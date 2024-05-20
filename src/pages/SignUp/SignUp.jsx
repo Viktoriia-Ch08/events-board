@@ -9,6 +9,8 @@ import { registerThunk } from '../../redux/auth/operations';
 import { updateUser } from '../../redux/auth/authSlice';
 import { Input, SubmitBtn } from '../Register/Register.styled';
 import {
+  AuthHeader,
+  AuthLabel,
   AuthLink,
   AuthText,
   AuthWrap,
@@ -67,23 +69,27 @@ const SignUp = () => {
 
   return (
     <AuthWrap>
+      <AuthHeader>Sign up</AuthHeader>
       <form onSubmit={handleSubmit(signup)} className="auth-form">
-        <label>
+        <AuthLabel>
+          Enter your name
           <Input
             type="text"
             {...register('name', { required: true })}
             placeholder="Adam"
           />
-        </label>
-        <label>
+        </AuthLabel>
+        <AuthLabel>
+          Enter your email
           <Input
             type="email"
             {...register('email', { required: true })}
             placeholder="email@gmail.com"
           />
           {errors.email && <span> {errors.email.message}</span>}
-        </label>
-        <label>
+        </AuthLabel>
+        <AuthLabel>
+          Enter your birth date
           <Input
             type="date"
             {...register('birthDate', { required: true })}
@@ -92,8 +98,9 @@ const SignUp = () => {
             max="2018-12-31"
           />
           {errors.number && <span> {errors.number.message}</span>}
-        </label>
-        <label>
+        </AuthLabel>
+        <AuthLabel>
+          Enter password
           <Input
             type={toggleInput}
             {...register('password', { required: true })}
@@ -112,8 +119,9 @@ const SignUp = () => {
             </SvgSpan>
           </SvgWrap>
           {errors.password && <span>{errors.password.message}</span>}
-        </label>
-        <label>
+        </AuthLabel>
+        <AuthLabel>
+          Repeat password
           <Input
             type={toggleSecondInput}
             {...register('repeatPassword', {
@@ -141,7 +149,7 @@ const SignUp = () => {
           {errors.repeatPassword && (
             <span>{errors.repeatPassword.message}</span>
           )}
-        </label>
+        </AuthLabel>
 
         <SubmitBtn type="submit" disabled={!isValid}>
           Sign up

@@ -22,6 +22,7 @@ const eventsSlice = createSlice({
         state.isLoading = false;
         state.events = [...action.payload.events];
         state.totalEvents = action.payload.totalRecords;
+        state.eventDetails = {};
       })
       .addCase(fetchEventById.fulfilled, (state, action) => {
         state.isLoading = false;

@@ -48,3 +48,9 @@ export const ParticName = styled.h3`
     font-size: 24px;
   }
 `;
+
+export const NoParticText = styled.p`
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+`;

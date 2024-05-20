@@ -13,8 +13,8 @@ export const addParticipant = createAsyncThunk(
   }
 );
 
-export const fetchAllParticipants = createAsyncThunk(
-  'participants/fetchAllParticipants',
+export const fetchAllParticipantsByEventId = createAsyncThunk(
+  'participants/fetchAllParticipantsByEventId',
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`/events/${id}/participants`);

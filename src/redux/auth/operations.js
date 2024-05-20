@@ -5,6 +5,7 @@ import {
 } from 'firebase/auth';
 import { fetchUserData } from '../../services/authServices';
 import { auth } from '../../../firebase.config';
+import axios from 'axios';
 
 export const fetchUser = createAsyncThunk(
   'auth/fetchUser',
@@ -40,6 +41,19 @@ export const loginThunk = createAsyncThunk(
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       return response.user;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const fetchUserEventsByEmail = createAsyncThunk(
+  'auth/fetchUserEventsByEmail',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axios.get(`/participant/${email}`);
+      console.log(response);
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

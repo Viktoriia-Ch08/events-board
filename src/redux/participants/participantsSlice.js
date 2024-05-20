@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addParticipant, fetchAllParticipants } from './operation';
+import { addParticipant, fetchAllParticipantsByEventId } from './operation';
 
 const participantsSlice = createSlice({
   name: 'participants',
@@ -17,19 +17,22 @@ const participantsSlice = createSlice({
           ? state.participants.push(action.payload)
           : (state.participants = [...action.payload]);
       })
-      .addCase(fetchAllParticipants.fulfilled, (state, action) => {
+      .addCase(fetchAllParticipantsByEventId.fulfilled, (state, action) => {
         state.isLoading = false;
         state.participants = [...action.payload];
       })
       .addMatcher(
-        isAnyOf(addParticipant.pending, fetchAllParticipants.pending),
+        isAnyOf(addParticipant.pending, fetchAllParticipantsByEventId.pending),
         state => {
           state.isLoading = true;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(addParticipant.rejected, fetchAllParticipants.rejected),
+        isAnyOf(
+          addParticipant.rejected,
+          fetchAllParticipantsByEventId.rejected
+        ),
         (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
