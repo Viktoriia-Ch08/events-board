@@ -54,3 +54,25 @@ export const NoParticText = styled.p`
   font-weight: var(--font-weight-bold);
   text-align: center;
 `;
+
+export const ParticHeader = styled.h1`
+  margin-bottom: 15px;
+
+  font-size: 36px;
+  font-weight: var(--font-weight-bold);
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
+`;
+
+export const EventHeader = styled.h2`
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-special-clr);
+  text-shadow: 1px 1px 2px var(--text-clr-black);
+
+  @media ${device.tablet} {
+    font-size: 30px;
+  }
+`;

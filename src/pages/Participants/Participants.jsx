@@ -6,7 +6,9 @@ import { fetchAllParticipantsByEventId } from '../../redux/participants/operatio
 import { useNavigate, useParams } from 'react-router';
 import { selectEventTitle } from '../../redux/events/selectors';
 import {
+  EventHeader,
   NoParticText,
+  ParticHeader,
   ParticImg,
   ParticInfoWrap,
   ParticItem,
@@ -14,7 +16,6 @@ import {
   ParticName,
   ParticWrap,
 } from './Participants.styled';
-import { EventHeader } from '../Event/Event.styled';
 import defaultImg from '../../assets/default-img.png';
 import { ReturnBackBtn } from '../Register/Register.styled';
 
@@ -32,6 +33,7 @@ const Participants = () => {
   return (
     <>
       <ReturnBackBtn onClick={() => navigate(-1)}>Return back</ReturnBackBtn>
+      <ParticHeader>Participants</ParticHeader>
       {participants.length > 0 ? (
         <ParticWrap>
           <EventHeader>{title}</EventHeader>
