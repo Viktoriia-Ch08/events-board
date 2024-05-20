@@ -52,7 +52,6 @@ export const fetchUserEventsByEmail = createAsyncThunk(
   async (email, thunkAPI) => {
     try {
       const response = await axios.get(`/participant/${email}`);
-      console.log(response);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
