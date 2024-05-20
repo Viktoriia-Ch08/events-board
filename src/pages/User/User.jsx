@@ -28,7 +28,7 @@ export const User = () => {
   return (
     <>
       <ReturnBackBtn onClick={() => navigate(-1)}>Return back</ReturnBackBtn>
-      {userEventsData.length > 0 ? (
+      {userEventsData && userEventsData.length > 0 ? (
         <Cards>
           {userEventsData.map(el => {
             return (
