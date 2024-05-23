@@ -34,6 +34,8 @@ npm run dev
 
 ## **[Back-End](https://github.com/Viktoriia-Ch08/events-board-backend)**
 
+## **[Swagger](https://events-board-rest-api.onrender.com/api-docs/)**
+
 # Developer
 
 Viktoriia Cherkashyna
