@@ -1,4 +1,4 @@
-import{i as d,p as e,d as i,u as x,a as c,b as f,c as h,r as g,k as m,j as t}from"./index-Cps602_G.js";import{n as u}from"./index.browser-DP16PUbO.js";import{d as b}from"./selectors-Cm_Shmzu.js";import{R as j}from"./Register.styled-CDjRuFHR.js";const v=a=>a.participants,w=d(v,a=>a.participants),P=e.div`
+import{i as d,p as e,d as i,u as x,a as c,b as f,c as h,r as g,k as m,j as t}from"./index-DEVsI3mn.js";import{n as u}from"./index.browser-DP16PUbO.js";import{d as b}from"./selectors-D8T8xVRC.js";import{R as j}from"./Register.styled-Byrkh-t_.js";const v=a=>a.participants,w=d(v,a=>a.participants),P=e.div`
   display: flex;
   flex-direction: column;
 

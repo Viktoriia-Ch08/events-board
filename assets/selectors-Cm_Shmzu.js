@@ -1,1 +1,0 @@
-import{i as t}from"./index-Cps602_G.js";const s=e=>e.data,c=t(s,e=>e.events),l=t(s,e=>e.totalEvents),n=t(s,e=>e.eventDetails),o=t(s,e=>e.eventDetails.title),v=t(s,e=>e.page);export{v as a,l as b,n as c,o as d,c as s};
