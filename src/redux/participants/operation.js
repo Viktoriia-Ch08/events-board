@@ -5,7 +5,10 @@ export const addParticipant = createAsyncThunk(
   'participant/addParticipant',
   async ({ id, user }, thunkAPI) => {
     try {
-      const response = await axios.post(`/events/${id}/participants`, user);
+      const response = await axios.post(
+        `/events/${id}/register/participant`,
+        user
+      );
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

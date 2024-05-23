@@ -1,4 +1,4 @@
-## Project description
+## About project:
 
 The project was created based on a test task. The main purpose of the app is to
 show users events taking place in the city. The application allows you to scroll
@@ -6,7 +6,7 @@ through the list of events page by page, find out the details of the event, its
 participants, and register for the selected event. You can also authorize and
 have access to a list of all events you have signed up for.
 
-## Installation instructions
+## Installation
 
 1. Clone the repository
 
@@ -26,6 +26,13 @@ npm install
 npm run dev
 
 ```
+
+## Technologies used:
+
+`HTML` `React` `Redux-tolkit` `styled-components` `axios` `react-hook-form`
+`redux-persist` `firebase`
+
+## **[Back-End](https://github.com/Viktoriia-Ch08/events-board-backend)**
 
 # Developer
 
